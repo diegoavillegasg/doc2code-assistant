@@ -69,3 +69,7 @@ if pregunta:
         respuesta = query_engine.query(pregunta)
         st.markdown("### 🧠 Respuesta:")
         st.write(respuesta.response)
+
+def main():
+    import streamlit.web.bootstrap
+    streamlit.web.bootstrap.run("doc2code_assistant/app.py", "", [], [])

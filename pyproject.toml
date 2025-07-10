@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "doc2code_assistant"
+version = "0.1.0"
+description = "Your own AI coding assistant based on your documentation using open models (like Ollama) + Streamlit"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+  {name = "Diego Villegas", email = "diegoavillegasg@gmail.com"}
+]
+dependencies = [
+  "streamlit",
+  "llama-index",
+  "llama-index-llms-ollama",
+  "llama-index-embeddings-huggingface"
+]
+
+[project.scripts]
+doc2code_assistant = "doc2code_assistant.app:main"

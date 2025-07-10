@@ -1,4 +1,4 @@
-# 🧠 Code Assistant
+# 🧠 Doc2Code Assistant
 
 Your own **AI coding assistant** powered by **local language models** — no internet, no OpenAI, just raw power on your machine 💻⚡
 
