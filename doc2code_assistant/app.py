@@ -22,10 +22,10 @@ def detectar_uso_gpu():
         for line in result:
             if "ollama" in line.lower():
                 pid, proc, mem = line.split(",")
-                return f"✅ GPU en uso por Ollama (PID {pid.strip()}, {mem.strip()} MiB)"
-        return "⚠️ Ollama no está usando la GPU actualmente."
+                return f"✅ GPU in use by Ollama (PID {pid.strip()}, {mem.strip()} MiB)"
+        return "⚠️ Ollama is not currently using the GPU."
     except Exception as e:
-        return f"❌ No se pudo verificar el uso de GPU: {e}"
+        return f"❌ GPU usage could not be verified: {e}"
 
 
 @st.cache_resource
@@ -48,27 +48,24 @@ def load_or_create_index():
 
 # Mostrar estado de la GPU
 estado_gpu = detectar_uso_gpu()
-st.info(f"🖥️ Estado de GPU: {estado_gpu}")
+st.info(f"🖥️ GPU State: {estado_gpu}")
 
-st.set_page_config(page_title="Asistente de Documentación", layout="centered")
-st.title("📚 Asistente de Documentación Técnica")
-st.write("Haz preguntas sobre tu documentación cargada localmente.")
+st.set_page_config(page_title="Documentation Based Assistant", layout="centered")
+st.title("📚 Documentation Based Assistant")
+st.write("Ask questions about your locally uploaded documentation.")
 
 # Cargar o crear el índice
 index, llm = load_or_create_index()
 query_engine = index.as_query_engine(llm=llm)
 
-st.set_page_config(page_title="Asistente de Documentación", layout="centered")
-st.title("📚 Asistente de Documentación Técnica")
-
 # Interfaz
-pregunta = st.text_input("🔍 Escribe tu pregunta sobre la documentación:")
+question = st.text_input("🔍 Ask your question about the documentation:")
 
-if pregunta:
-    with st.spinner("Pensando..."):
-        respuesta = query_engine.query(pregunta)
-        st.markdown("### 🧠 Respuesta:")
-        st.write(respuesta.response)
+if question:
+    with st.spinner("Thinking..."):
+        answer = query_engine.query(question)
+        st.markdown("### 🧠 Answer:")
+        st.write(answer.response)
 
 def main():
     import streamlit.web.bootstrap
